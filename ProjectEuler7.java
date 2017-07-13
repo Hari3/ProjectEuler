@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class ProjectEuler7 {
   
-  /*
+  /**
    * This problem is a programming version of Problem 7 from projecteuler.net
    *
    *By listing the first six prime numbers: 2, 3, 5, 7, 11 and 13, we can see that the 6th prime is 13.
@@ -47,6 +47,7 @@ public class ProjectEuler7 {
    * */
     
   public static List<Long> primes = new ArrayList<>();
+  
   public static long prime(long n){
       n--;
       if(n<primes.size())
@@ -62,6 +63,7 @@ public class ProjectEuler7 {
       }
       return primes.get(primes.size()-1);
   }
+  
   public static boolean isPrime(long n){
     for(long i: primes)
       if(n%i==0)
@@ -69,6 +71,7 @@ public class ProjectEuler7 {
     primes.add(n);
     return true;
   }
+  
   public static void main(String[] args) {
       primes.add(2L);
       primes.add(3L);
