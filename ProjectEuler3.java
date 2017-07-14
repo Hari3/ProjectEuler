@@ -50,10 +50,17 @@ public class ProjectEuler3 {
     for(long i: primes)
       if(n%i==0)
         return false;
-    primes.add(n);
     return true;
   }
-  
+  public static void fill(long p){
+    if(primes.contains(p))
+      return;
+	long i = primes.get(primes.size()-1);
+	  for(;i<p;i+=2){
+		if(isPrime(i))
+		  primes.add(i);
+	  }
+  }
   public static void main(String[] args) {
     primes.add(2L);
     primes.add(3L);
@@ -61,15 +68,13 @@ public class ProjectEuler3 {
     int t = in.nextInt();
     for(int a0 = 0; a0 < t; a0++){
         long n = in.nextLong();
-        long p = 3 ;
-        long x = 3;
-        do
-        {
-          p+=2;
-          if(isPrime(p))
-            x=x<p?p:x;
-        }while(n%p!=0);
-        System.out.println(x);
+        long p = n - 1 + n%2;
+        fill(p);
+        while(n%p!=0||!isPrime(p)){
+          p-=2;
+        }
+        System.out.println(p);
     }
+    in.close();
   }
 }
