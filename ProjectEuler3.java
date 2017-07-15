@@ -1,7 +1,5 @@
 package projectEuler;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class ProjectEuler3 {
@@ -42,38 +40,29 @@ public class ProjectEuler3 {
    *Prime factors of 10 are {2,5}, largest is 5.
    *Prime factor of 17 is 17 itself, hence largest is 17.
    * */
-  public static List<Long> primes = new ArrayList<>();
-   
-  public static boolean isPrime(long n){
-    if(primes.contains(n))
-      return true;
-    for(long i: primes)
-      if(n%i==0)
-        return false;
-    return true;
-  }
-  public static void fill(long p){
-    if(primes.contains(p))
-      return;
-	long i = primes.get(primes.size()-1);
-	  for(;i<p;i+=2){
-		if(isPrime(i))
-		  primes.add(i);
-	  }
-  }
   public static void main(String[] args) {
-    primes.add(2L);
-    primes.add(3L);
     Scanner in = new Scanner(System.in);
     int t = in.nextInt();
     for(int a0 = 0; a0 < t; a0++){
-        long n = in.nextLong();
-        long p = n - 1 + n%2;
-        fill(p);
-        while(n%p!=0||!isPrime(p)){
-          p-=2;
+      long n = in.nextLong();
+      long i = 3;
+      while(n%2 == 0){
+        n /= 2;
+      }
+      if(n==1){
+        System.out.println(2);
+      }
+      else{
+        for(;i<=Math.sqrt(n);){
+          if(n%i==0){
+            n/=i;
+          } 
+          else{
+            i+=2;
+          }
         }
-        System.out.println(p);
+        System.out.println(n>2?n:i);
+      }           
     }
     in.close();
   }
